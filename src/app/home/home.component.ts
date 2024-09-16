@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 interface WeatherForecast {
   date: string;
@@ -26,7 +27,7 @@ export class HomeComponent implements OnInit {
   }
 
   getForecasts() {
-    this.http.get<WeatherForecast[]>('http://localhost:5288/weatherforecast').subscribe({
+    this.http.get<WeatherForecast[]>(`${environment.baseUrl}weatherforecast`).subscribe({
       next: result => this.forecasts = result,
       error: e => console.error(e)
       })
